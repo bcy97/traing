@@ -1,21 +1,22 @@
 package nju.traing.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.Date;
+import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "course")
 public class Course {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private Date startDate;
-    private Date endDate;
+    @Column(name = "start_date")
+    private Timestamp startDate;
+    @Column(name = "end_date")
+    private Timestamp endDate;
+    @Column(name = "orgId")
     private int orgId;
+    @Column(name = "userId")
     private int userId;
     private double price;
     private String description;
@@ -33,19 +34,19 @@ public class Course {
         this.id = id;
     }
 
-    public Date getStartDate() {
+    public Timestamp getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(Timestamp startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public Timestamp getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(Timestamp endDate) {
         this.endDate = endDate;
     }
 

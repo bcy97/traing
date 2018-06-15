@@ -1,22 +1,20 @@
 package nju.traing.entity;
 
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "user")
 @EntityListeners(AuditingEntityListener.class)
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "create_time")
-    @CreatedDate
-    private Date createTime;
+    private Timestamp createTime;
 
     private String username;
     private String password;
@@ -29,11 +27,11 @@ public class User {
         this.id = id;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 

@@ -4,7 +4,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "order")
@@ -12,19 +12,24 @@ import java.util.Date;
 public class Order {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "create_time")
     @CreatedDate
-    private Date createTime;
-
-    private Date payDate;
-    private Date startDate;
+    private Timestamp createTime;
+    @Column(name = "pay_date")
+    private Timestamp payDate;
+    @Column(name = "start_date")
+    private Timestamp startDate;
     private int state;
+    @Column(name = "cancel_reason")
     private String cancelReason;
 
+    @Column(name = "userId")
     private int userId;
+    @Column(name = "orgId")
     private int orgId;
+    @Column(name = "courseId")
     private int courseId;
 
     public int getId() {
@@ -35,27 +40,27 @@ public class Order {
         this.id = id;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public Date getPayDate() {
+    public Timestamp getPayDate() {
         return payDate;
     }
 
-    public void setPayDate(Date payDate) {
+    public void setPayDate(Timestamp payDate) {
         this.payDate = payDate;
     }
 
-    public Date getStartDate() {
+    public Timestamp getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(Timestamp startDate) {
         this.startDate = startDate;
     }
 

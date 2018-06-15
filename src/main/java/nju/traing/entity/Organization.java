@@ -4,25 +4,24 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "organization")
 @EntityListeners(AuditingEntityListener.class)
 public class Organization {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
 
     @Column(name = "create_time")
     @CreatedDate
-    private Date createTime;
+    private Timestamp createTime;
 
     private int province;
     private int city;
     private String location;
-    private String code;
 
     public int getId() {
         return id;
@@ -32,11 +31,11 @@ public class Organization {
         this.id = id;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
@@ -64,11 +63,4 @@ public class Organization {
         this.location = location;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 }
