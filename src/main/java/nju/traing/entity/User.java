@@ -5,18 +5,17 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "user")
-@EntityListeners(AuditingEntityListener.class)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "create_time")
-    @CreatedDate
-    private Timestamp createTime;
+    private Date createTime;
 
     private String username;
     private String password;
@@ -29,13 +28,14 @@ public class User {
         this.id = id;
     }
 
-    public Timestamp getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
 
     public String getUsername() {
         return username;

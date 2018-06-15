@@ -2,6 +2,7 @@ package nju.traing.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "course")
@@ -11,9 +12,9 @@ public class Course {
     private int id;
 
     @Column(name = "start_date")
-    private Timestamp startDate;
+    private Date startDate;
     @Column(name = "end_date")
-    private Timestamp endDate;
+    private Date endDate;
     @Column(name = "orgId")
     private int orgId;
     @Column(name = "userId")
@@ -34,19 +35,19 @@ public class Course {
         this.id = id;
     }
 
-    public Timestamp getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Timestamp startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public Timestamp getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Timestamp endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 

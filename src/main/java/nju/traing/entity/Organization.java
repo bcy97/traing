@@ -5,10 +5,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "organization")
-@EntityListeners(AuditingEntityListener.class)
 public class Organization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,12 +16,20 @@ public class Organization {
 
 
     @Column(name = "create_time")
-    @CreatedDate
-    private Timestamp createTime;
+    private Date createTime;
 
     private int province;
     private int city;
     private String location;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;
@@ -31,8 +39,12 @@ public class Organization {
         this.id = id;
     }
 
-    public Timestamp getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public void setCreateTime(Timestamp createTime) {

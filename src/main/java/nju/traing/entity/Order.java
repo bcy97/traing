@@ -5,22 +5,21 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "order")
-@EntityListeners(AuditingEntityListener.class)
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "create_time")
-    @CreatedDate
-    private Timestamp createTime;
+    private Date createTime;
     @Column(name = "pay_date")
-    private Timestamp payDate;
+    private Date payDate;
     @Column(name = "start_date")
-    private Timestamp startDate;
+    private Date startDate;
     private int state;
     @Column(name = "cancel_reason")
     private String cancelReason;
@@ -40,27 +39,28 @@ public class Order {
         this.id = id;
     }
 
-    public Timestamp getCreateTime() {
+
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-    public Timestamp getPayDate() {
+    public Date getPayDate() {
         return payDate;
     }
 
-    public void setPayDate(Timestamp payDate) {
+    public void setPayDate(Date payDate) {
         this.payDate = payDate;
     }
 
-    public Timestamp getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Timestamp startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
