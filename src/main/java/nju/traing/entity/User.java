@@ -1,10 +1,6 @@
 package nju.traing.entity;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -19,6 +15,15 @@ public class User {
 
     private String username;
     private String password;
+
+    public User() {
+    }
+
+    public User(Date createTime, String username, String password) {
+        this.createTime = createTime;
+        this.username = username;
+        this.password = password;
+    }
 
     public int getId() {
         return id;
