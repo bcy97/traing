@@ -22,9 +22,10 @@ public class Course {
     private double price;
     private String description;
     private String name;
+    @Column(name = "course_type")
     private int courseType;
     private int num;
-    private int sale;
+    private int sold;
     private String teacher;
 
     public int getId() {
@@ -107,12 +108,12 @@ public class Course {
         this.num = num;
     }
 
-    public int getSale() {
-        return sale;
+    public int getSold() {
+        return sold;
     }
 
-    public void setSale(int sale) {
-        this.sale = sale;
+    public void setSold(int sold) {
+        this.sold = sold;
     }
 
     public String getTeacher() {

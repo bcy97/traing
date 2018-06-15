@@ -42,10 +42,17 @@ public class TraingApplicationTests {
 		course.setDescription("船新的课程");
 		Calendar calendar=Calendar.getInstance();
 		calendar.add(Calendar.MONTH,1);
-		course.setEndDate(calendar.getTime());
-		calendar.add(Calendar.MONTH,1);
 		course.setStartDate(calendar.getTime());
-		course.setName("计算机网络");
+		calendar.add(Calendar.MONTH,1);
+		course.setEndDate(calendar.getTime());
+		course.setName("软件工程");
+		course.setOrgId(1);
+		course.setNum(20);
+		course.setPrice(30000);
+		course.setSold(15);
+		course.setUserId(1);
+		course.setTeacher("丁ey");
+		courseDao.save(course);
 	}
 
 }
