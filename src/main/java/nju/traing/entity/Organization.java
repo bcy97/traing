@@ -63,4 +63,14 @@ public class Organization {
         this.location = location;
     }
 
+    @Override
+    public String toString() {
+        return "Organization{" +
+                "id=" + id +
+                ", createTime=" + createTime +
+                ", province=" + province +
+                ", city=" + city +
+                ", location='" + location + '\'' +
+                '}';
+    }
 }

@@ -1,5 +1,6 @@
 package nju.traing.entity;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public class User {
     private int id;
 
     @Column(name = "create_time")
+    @CreatedDate
     private Timestamp createTime;
 
     private String username;
@@ -49,5 +51,15 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", createTime=" + createTime +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

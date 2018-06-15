@@ -1,7 +1,7 @@
 package nju.traing.dao;
 
 import nju.traing.TraingApplication;
-import nju.traing.entity.User;
+import nju.traing.entity.Organization;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,26 +12,25 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TraingApplication.class)
-public class UserDaoTest {
+public class OrganizationDaoTest {
 
     @Autowired
-    UserDao userDao;
+    OrganizationDao organizationDao;
 
     @Test
     public void testAdd() throws Exception {
-
-        User user = new User();
-        user.setUsername("bcy");
-        user.setPassword("123");
-        userDao.save(user);
+        Organization organization = new Organization();
+        organization.setCity(1);
+        organization.setProvince(1);
+        organization.setLocation("江苏省南京市鼓楼区汉口路");
+        organizationDao.save(organization);
     }
 
     @Test
     public void testFind() throws Exception {
-        List<User> users = userDao.findAll();
-        for (User user : users) {
-            System.out.println(user);
+        List<Organization> organizations = organizationDao.findAll();
+        for (Organization o : organizations) {
+            System.out.println(o);
         }
     }
-
 }
