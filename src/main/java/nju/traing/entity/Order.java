@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "order")
+@Table(name = "train_order")
 public class Order {
 
     @Id
