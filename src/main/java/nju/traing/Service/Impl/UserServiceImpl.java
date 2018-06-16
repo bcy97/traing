@@ -23,10 +23,28 @@ public class UserServiceImpl implements UserService {
         }
         User user = new User(createTime, username, password);
         try {
-
             userDao.save(user);
         } catch (Exception e) {
             log.debug("UserServiceImpl.addUser. User info:", user);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean login(String username, String password) {
+        if (username == null || username.equals("") || password == null || password.equals("")) {
+            return false;
+        }
+        try {
+            User user = userDao.findByUsername(username);
+            if (user == null) {
+                return false;
+            } else if (user.getPassword() == password) {
+                return true;
+            }
+        } catch (Exception e) {
+            log.debug("UserServiceImpl.login. User name:", username);
             return false;
         }
         return true;
