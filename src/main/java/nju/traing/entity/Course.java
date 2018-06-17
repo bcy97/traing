@@ -17,8 +17,6 @@ public class Course {
     private Date endDate;
     @Column(name = "orgId")
     private int orgId;
-    @Column(name = "userId")
-    private int userId;
     private double price;
     private String description;
     private String name;
@@ -60,13 +58,6 @@ public class Course {
         this.orgId = orgId;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public double getPrice() {
         return price;
