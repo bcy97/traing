@@ -1,10 +1,6 @@
 package nju.traing.entity;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -30,6 +26,8 @@ public class Order {
     private int orgId;
     @Column(name = "courseId")
     private int courseId;
+    @Column(name = "value")
+    private double value;
 
     public int getId() {
         return id;
@@ -102,5 +100,13 @@ public class Order {
 
     public void setCourseId(int courseId) {
         this.courseId = courseId;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
     }
 }

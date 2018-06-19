@@ -50,7 +50,6 @@ public class TraingApplicationTests {
 		course.setNum(20);
 		course.setPrice(30000);
 		course.setSold(15);
-		course.setUserId(1);
 		course.setTeacher("丁ey");
 		courseDao.save(course);
 	}
