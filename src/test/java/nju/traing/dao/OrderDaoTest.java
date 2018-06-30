@@ -3,7 +3,6 @@ package nju.traing.dao;
 import nju.traing.TraingApplication;
 import nju.traing.entity.Course;
 import nju.traing.entity.Order;
-import nju.traing.entity.Organization;
 import nju.traing.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,22 +38,26 @@ public class OrderDaoTest {
 
         long month = (end17 - end16) / 12;
 
-        List<User> user15 = userDao.findByCreateTimeBetween(new Date(base_time), new Date(end15));
-        List<User> user16 = userDao.findByCreateTimeBetween(new Date(end15), new Date(end16));
-        List<User> user17 = userDao.findByCreateTimeBetween(new Date(end16), new Date(end17));
-        List<User> user18 = userDao.findByCreateTimeBetween(new Date(end17), new Date(end_time));
+//        List<User> user15 = userDao.findByCreateTimeBetween(new Date(base_time), new Date(end15));
+//        List<User> user16 = userDao.findByCreateTimeBetween(new Date(end15), new Date(end16));
+//        List<User> user17 = userDao.findByCreateTimeBetween(new Date(end16), new Date(end17));
+//        List<User> user18 = userDao.findByCreateTimeBetween(new Date(end17), new Date(end_time));
 
-        List<Organization> organization1 = organizationDao.findAllByCity(1);
-
+        List<User> users = userDao.findAll();
         List<Order> orders = new ArrayList<>();
         int i = 0;
-        for (User user : user15) {
+        for (User user : users) {
+            if (i <= 800) {
+                i++;
+                continue;
+            }
             if (i % 200 == 0 && i != 0) {
                 orderDao.saveAll(orders);
                 orders = new ArrayList<>();
             }
             List<Course> courses = courseDao.findAllByStartDateBetween(user.getCreateTime(), new Date(end_time));
             int num = (int) (Math.random() * 12) + 3;
+            num = num > courses.size() ? (int) (Math.random() * courses.size()) : num;
             for (int j = 0; j < num; j++) {
 
                 int courseNum = (int) (Math.random() * courses.size());
@@ -69,10 +72,15 @@ public class OrderDaoTest {
                 order.setValue(course.getPrice());
                 order.setState(2);
                 order.setCreateTime(new Date(course.getStartDate().getTime() - (int) (Math.random() * month)));
-
+                order.setPayDate(new Date(order.getCreateTime().getTime() + (int) (Math.random() * (month / 30 / 24 / 2))));
+                orders.add(order);
             }
 
             i++;
+        }
+
+        if (i % 200 != 0) {
+            orderDao.saveAll(orders);
         }
 
     }
