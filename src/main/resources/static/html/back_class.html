@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="UTF-8">
+    <title>平台课程统计</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>机构数据统计</title>
     <!-- Bootstrap Styles-->
     <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
     <!-- FontAwesome Styles-->
@@ -42,10 +41,16 @@
             <ul class="nav" id="main-menu">
 
                 <li>
-                    <a href="org_index.html"><i class="fa fa-fw fa-file"></i> 总体概况</a>
+                    <a href="back_index.html"><i class="fa fa-fw fa-file"></i> 总体概况</a>
                 </li>
                 <li>
-                    <a class="active-menu" href="org_stats.html"><i class="fa fa-bar-chart-o"></i> 统计分析</a>
+                    <a href="back_std.html"><i class="fa fa-bar-chart-o"></i> 学生统计</a>
+                </li>
+                <li>
+                    <a href="back_org.html"><i class="fa fa-bar-chart-o"></i> 机构统计</a>
+                </li>
+                <li>
+                    <a class="active-menu" href="back_class.html"><i class="fa fa-bar-chart-o"></i> 课程统计</a>
                 </li>
             </ul>
 
@@ -740,6 +745,7 @@
                         name: '订单数',
                         type: 'map',
                         mapType: 'china',
+                        roam: true,
                         label: {
                             normal: {
                                 show: false

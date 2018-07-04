@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>平台学生统计</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Bootstrap Styles-->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="../assets/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+    <link href="../assets/js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="../assets/css/custom-styles.css" rel="stylesheet"/>
+    <!-- Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+    <!--echarts-->
+    <script type="text/javascript" src="../assets/js/echarts.min.js"></script>
+    <script src="../assets/js/china.js"></script>
+    <script src="../assets/js/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+<div id="wrapper">
+    <nav class="navbar navbar-default top-navbar" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand"><i class="fa fa-gear"></i> <strong>有好课</strong></a>
+        </div>
+
+
+    </nav>
+    <!--/. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+
+                <li>
+                    <a href="back_index.html"><i class="fa fa-fw fa-file"></i> 总体概况</a>
+                </li>
+                <li>
+                    <a class="active-menu" href="back_std.html"><i class="fa fa-bar-chart-o"></i> 学生统计</a>
+                </li>
+                <li>
+                    <a href="back_org.html"><i class="fa fa-bar-chart-o"></i> 机构统计</a>
+                </li>
+                <li>
+                    <a href="back_class.html"><i class="fa fa-bar-chart-o"></i> 课程统计</a>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-header">
+                        学生数据分析
+                        <small>学生总体数据</small>
+                    </h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary text-center no-boder blue">
+                        <div class="panel-right blue">
+                            <h4>学生总数</h4>
+                            <h3>14655</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary text-center no-boder red">
+                        <div class="panel-right red">
+                            <h4>学生预定课程均价 </h4>
+                            <h3>1825.82</h3>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="panel panel-primary text-center no-boder brown">
+                        <div class="panel-right brown">
+                            <h4>学生总退课率</h4>
+                            <h3>5.69</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="page-header">
+                        学生数量统计
+                    </h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <ul class="nav nav-tabs" style="margin-left: 15px">
+                    <li class="active"><a id="q" data-toggle="tab">按季度</a>
+                    </li>
+                    <li class=""><a id="m" data-toggle="tab">按月</a>
+                    </li>
+                </ul>
+                <div id="allcomsume" style="width: 1100px;height:400px; float: left; margin-left: 15px"></div>
+                <div id="allconsume_mon"
+                     style="width: 1100px;height:400px; float: left; margin-left: 15px;"></div>
+            </div>
+
+            <script type="text/javascript">
+                $("#allconsume_mon").hide();
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('allcomsume'), 'light');
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: "各季度学生数量走势"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['学生数量']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['16Q3', '16Q4', '17Q1', '17Q2', '17Q3', '17Q4', '18Q1', '18Q2']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "学生数量",
+                        data: [257, 1064, 1525, 1906, 2226, 2431, 2625, 3163],
+                        type: 'line'
+                    }]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+
+                myChart = echarts.init(document.getElementById('allconsume_mon'), 'light');
+
+                option = {
+                    title: {
+                        text: "各月学生数量走势"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['学生数量']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['16.9', '16.10', '16.11', '16.12', '17.1', '17.2', '17.3', '17.4', '17.5', '17.6', '17.7', '17.8', '17.9', '17.10', '17.11', '17.12', '18.1', '18.2', '18.3', '18.4', '18.5', '18.6']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "学生数量",
+                        data: [257, 289, 317, 458, 434, 502, 589, 602, 614, 690, 702, 723, 801, 812, 786, 833, 826, 867, 932, 1021, 1011, 1131],
+                        type: 'line'
+                    }]
+                };
+                myChart.setOption(option);
+
+                $("#q").click(function () {
+                    $('#allcomsume').show();
+                    $('#allconsume_mon').hide();
+                })
+                $('#m').click(function () {
+                    $('#allcomsume').hide();
+                    $('#allconsume_mon').show();
+                })
+            </script>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">
+                    </h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div id="map" class="col-md-12" style="height:400px; "></div>
+            </div>
+
+            <script type="text/javascript">
+                // 基于准备好的dom，初始化echarts实例
+                var map = echarts.init(document.getElementById('map'));
+
+                // 指定图表的配置项和数据
+                var option3 = {
+                    backgroundColor: '#FFFFFF',
+                    title: {
+                        text: '学员地域分布',
+                        x: 'left'
+                    },
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    visualMap: {
+                        min: 10,
+                        max: 5000,
+                        text: ['High', 'Low'],
+                        realtime: false,
+                        calculable: true,
+                        inRange: {
+                            color: ['lightgray', 'yellow', 'red']
+                        }
+                    },
+                    series: [{
+                        name: '学员数',
+                        type: 'map',
+                        mapType: 'china',
+                        label: {
+                            normal: {
+                                show: false
+                            },
+                            emphasis: {
+                                show: false
+                            }
+                        },
+                        data: [
+                            {name: '北京', value: 2711},
+                            {name: '天津', value: 2372},
+                            {name: '上海', value: 3001},
+                            {name: '重庆', value: 423},
+                            {name: '河北', value: 0},
+                            {name: '河南', value: 0},
+                            {name: '云南', value: 23},
+                            {name: '辽宁', value: 181},
+                            {name: '黑龙江', value: 440},
+                            {name: '湖南', value: 0},
+                            {name: '安徽', value: 150},
+                            {name: '山东', value: 2682},
+                            {name: '新疆', value: 41},
+                            {name: '江苏', value: 3868},
+                            {name: '浙江', value: 3112},
+                            {name: '江西', value: 0},
+                            {name: '湖北', value: 0},
+                            {name: '广西', value: 0},
+                            {name: '甘肃', value: 0},
+                            {name: '山西', value: 847},
+                            {name: '内蒙古', value: 0},
+                            {name: '陕西', value: 0},
+                            {name: '吉林', value: 149},
+                            {name: '福建', value: 0},
+                            {name: '贵州', value: 798},
+                            {name: '广东', value: 2},
+                            {name: '青海', value: 0},
+                            {name: '西藏', value: 0},
+                            {name: '四川', value: 621},
+                            {name: '宁夏', value: 62},
+                            {name: '海南', value: 60},
+                            {name: '台湾', value: 0},
+                            {name: '香港', value: 0},
+                            {name: '澳门', value: 0}
+                        ]
+                    }]
+                };
+                map.setOption(option3);
+            </script>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">
+                    </h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">
+                    </h2>
+                    <h3 class="page-header">
+                        学生预定价格偏好
+                    </h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div id="price" style="width: 1100px;height:400px; float: left; margin-left: 15px"></div>
+            </div>
+
+            <script type="text/javascript">
+                $("#consume_mon").hide();
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('price'), 'light');
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: "学生预定数量随价格变化趋势"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['课程售出数量']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['0-999', '1000-1999', '2000-2999', '3000-3999', '4000-']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "课程售出数量",
+                        data: [2345, 4152, 3621, 3211, 1326],
+                        type: 'bar'
+                    }]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+
+            </script>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">
+                    </h2>
+                    <h3 class="page-header">
+                        退课情况分析
+                    </h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div id="drop" class="col-md-12" style="height:400px; float: left;"></div>
+            </div>
+
+            <script type="text/javascript">
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('drop'), 'light');
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: "退课率随时间变化趋势"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['退课率']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['16.9', '16.10', '16.11', '16.12', '17.1', '17.2', '17.3', '17.4', '17.5', '17.6', '17.7', '17.8', '17.9', '17.10', '17.11', '17.12', '18.1', '18.2', '18.3', '18.4', '18.5', '18.6']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "退课率",
+                        data: [11.2, 11.0, 10.5, 10.6, 9.6, 9.5, 9.6, 8.7, 8.6, 8.1, 7.5, 7.1, 6.4, 5.6, 5.3, 5.0, 4.4, 4.4, 4.2, 3.8, 3.4, 3.5],
+                        type: 'line'
+                    }]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+
+            </script>
+
+
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+
+<!-- Bootstrap Js -->
+<script src="../assets/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Js -->
+<script src="../assets/js/jquery.metisMenu.js"></script>
+<!-- Morris Chart Js -->
+<script src="../assets/js/morris/raphael-2.1.0.min.js"></script>
+<script src="../assets/js/morris/morris.js"></script>
+
+
+<script src="../assets/js/easypiechart.js"></script>
+<script src="../assets/js/easypiechart-data.js"></script>
+
+<script src="../assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+<!-- Custom Js -->
+<script src="../assets/js/custom-scripts.js"></script>
+
+
+</body>
+
+</html>
