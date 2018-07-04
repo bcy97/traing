@@ -408,6 +408,18 @@ p {
     color: #ef4040;
 }
 
+#easypiechart-yellow .percent {
+    color: yellow;
+}
+
+#easypiechart-limegreen .percent {
+    color: limegreen;
+}
+
+#easypiechart-lightcoral .percent {
+    color: lightcoral;
+}
+
 .chat-panel .panel-body {
     height: 450px;
     overflow-y: scroll;

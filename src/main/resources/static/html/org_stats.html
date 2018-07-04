@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>机构数据统计</title>
+    <!-- Bootstrap Styles-->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="../assets/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+    <link href="../assets/js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="../assets/css/custom-styles.css" rel="stylesheet"/>
+    <!-- Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+    <!--echarts-->
+    <script type="text/javascript" src="../assets/js/echarts.min.js"></script>
+    <script src="../assets/js/china.js"></script>
+    <script src="../assets/js/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+<div id="wrapper">
+    <nav class="navbar navbar-default top-navbar" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand"><i class="fa fa-gear"></i> <strong>有好课</strong></a>
+        </div>
+
+
+    </nav>
+    <!--/. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+
+                <li>
+                    <a href="org_index.html"><i class="fa fa-fw fa-file"></i> 总体概况</a>
+                </li>
+                <li>
+                    <a class="active-menu" href="org_stats.html"><i class="fa fa-bar-chart-o"></i> 统计分析</a>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-header">
+                        统计分析
+                        <small>销售、行业情况统计</small>
+                    </h1>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="page-header">
+                        销售额统计
+                    </h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <ul class="nav nav-tabs" style="margin-left: 15px">
+                    <li class="active"><a id="q" data-toggle="tab">按季度</a>
+                    </li>
+                    <li class=""><a id="m" data-toggle="tab">按月</a>
+                    </li>
+                </ul>
+                <div id="allcomsume" style="width: 1100px;height:400px; float: left; margin-left: 15px"></div>
+                <div id="allconsume_mon"
+                     style="width: 1100px;height:400px; float: left; margin-left: 15px;"></div>
+            </div>
+
+            <script type="text/javascript">
+                $("#allconsume_mon").hide();
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('allcomsume'), 'light');
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: "各季度销售额走势"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['销售额']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['16Q3', '16Q4', '17Q1', '17Q2', '17Q3', '17Q4', '18Q1', '18Q2']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "销售额",
+                        data: [92003.61, 373116.22, 319701.86, 486847.97, 688031.45, 645642.12, 700307.97, 911638.56],
+                        type: 'line'
+                    }]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+
+                myChart = echarts.init(document.getElementById('allconsume_mon'), 'light');
+
+                option = {
+                    title: {
+                        text: "各月销售额走势"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['销售额']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['16.9', '16.10', '16.11', '16.12', '17.1', '17.2', '17.3', '17.4', '17.5', '17.6', '17.7', '17.8', '17.9', '17.10', '17.11', '17.12', '18.1', '18.2', '18.3', '18.4', '18.5', '18.6']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "销售额",
+                        data: [92003.61, 115172.52, 201328.76, 56615.24, 87300.66, 115411.27, 116989.93, 139338.35, 165068.13, 182441.49, 205032.04, 240513.11, 242486.30, 321269.26, 329081.42, 316528.57, 208995.98, 122454.63, 368857.36, 285268.27, 282860.37, 343509.92],
+                        type: 'line'
+                    }]
+                };
+                myChart.setOption(option);
+
+                $("#q").click(function () {
+                    $('#allcomsume').show();
+                    $('#allconsume_mon').hide();
+                })
+                $('#m').click(function () {
+                    $('#allcomsume').hide();
+                    $('#allconsume_mon').show();
+                })
+            </script>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">
+                    </h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div id="compare" style="width: 800px;height:400px; float: left; margin-left: 15px"></div>
+                <div id="comparepie" style="width: 250px; height: 400px; float: right; margin-right: 15px"></div>
+            </div>
+
+
+            <script type="text/javascript">
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('compare'), 'light');
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: "近六个月同期销售额对比"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: ['一月', '二月', '三月', '四月', '五月', '六月']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLabel: {
+                            formatter: '{value}'
+                        }
+                    },
+                    backgroundColor: '#ffffff',
+                    legend: {
+                        data: ['2017', '2018']
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            magicType: {show: true, type: ['line', 'bar']},
+                        }
+                    },
+                    series: [
+                        {
+                            name: '2017',
+                            type: 'line',
+                            data: [87300.66, 115411.27, 116989.93, 139338.35, 165068.13, 182441.49],
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: '最大值'},
+                                    {type: 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine: {
+                                data: [
+                                    {type: 'average', name: '平均值'}
+                                ]
+                            }
+                        },
+                        {
+                            name: '2018',
+                            type: 'line',
+                            data: [208995.98, 122454.63, 368857.36, 285268.27, 282860.37, 343509.92],
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: '最大值'},
+                                    {type: 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine: {
+                                data: [
+                                    {type: 'average', name: '平均值'}
+
+                                ]
+                            }
+                        }
+                    ]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+
+                option = {
+                    title: {
+                        text: "近六个月销售额占比",
+                        x: "right"
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b}: {c} ({d}%)"
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        x: 'left',
+                        data: ['2017', '2018', '其他']
+                    },
+                    backgroundColor: '#ffffff',
+                    series: [
+                        {
+                            name: '总消费额',
+                            type: 'pie',
+                            radius: ['50%', '70%'],
+                            avoidLabelOverlap: false,
+                            label: {
+                                normal: {
+                                    show: false,
+                                    position: 'center'
+                                },
+                                emphasis: {
+                                    show: true,
+                                    textStyle: {
+                                        fontSize: '30',
+                                        fontWeight: 'bold'
+                                    }
+                                }
+                            },
+                            labelLine: {
+                                normal: {
+                                    show: false
+                                }
+                            },
+                            data: [
+                                {
+                                    value: 87300.66 + 115411.27 + 116989.93 + 139338.35 + 165068.13 + 182441.49,
+                                    name: '2017'
+                                },
+                                {
+                                    value: 208995.98 + 122454.63 + 368857.36 + 285268.27 + 282860.37 + 343509.92,
+                                    name: '2018'
+                                },
+                                {
+                                    value: 92003.61 + 115172.52 + 201328.76 + 56615.24
+                                    + 205032.04 + 240513.11 + 242486.30 + 321269.26 + 329081.42 + 316528.57, name: '其他'
+                                },
+                            ]
+                        }
+                    ]
+                };
+
+                var comparepie = echarts.init(document.getElementById('comparepie'), 'light');
+
+                comparepie.setOption(option);
+            </script>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">
+                    </h2>
+                    <h3 class="page-header">
+                        销售数量统计
+                    </h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <ul class="nav nav-tabs" style="margin-left: 15px">
+                    <li class="active"><a id="nq" data-toggle="tab">按季度</a>
+                    </li>
+                    <li class=""><a id="nm" data-toggle="tab">按月</a>
+                    </li>
+                </ul>
+                <div id="comsume_num" style="width: 1100px;height:400px; float: left; margin-left: 15px"></div>
+                <div id="consume_mon"
+                     style="width: 1100px;height:400px; float: left; margin-left: 15px;"></div>
+            </div>
+
+            <script type="text/javascript">
+                $("#consume_mon").hide();
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('comsume_num'), 'light');
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: "各季度课程售出数量走势"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['课程售出数量']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['16Q3', '16Q4', '17Q1', '17Q2', '17Q3', '17Q4', '18Q1', '18Q2']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "课程售出数量",
+                        data: [69, 319, 381, 528, 539, 542, 605, 563],
+                        type: 'line'
+                    }]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+
+                myChart = echarts.init(document.getElementById('consume_mon'), 'light');
+
+                option = {
+                    title: {
+                        text: "各月课程售出数量走势"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['课程售出数量']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['16.9', '16.10', '16.11', '16.12', '17.1', '17.2', '17.3', '17.4', '17.5', '17.6', '17.7', '17.8', '17.9', '17.10', '17.11', '17.12', '18.1', '18.2', '18.3', '18.4', '18.5', '18.6']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "课程售出数量",
+                        data: [69, 84, 102, 133, 98, 120, 163, 172, 165, 191, 199, 180, 160, 181, 178, 183, 190, 206, 209, 188, 174, 201],
+                        type: 'line'
+                    }]
+                };
+                myChart.setOption(option);
+
+                $("#nq").click(function () {
+                    $('#comsume_num').show();
+                    $('#consume_mon').hide();
+                })
+                $('#nm').click(function () {
+                    $('#comsume_num').hide();
+                    $('#consume_mon').show();
+                })
+            </script>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">
+                    </h2>
+                    <h3 class="page-header">
+                        课程分析
+                    </h3>
+                    <h4 class="page-header">
+                        市场占有率
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>计算机课程</h4>
+                            <div class="easypiechart" id="easypiechart-teal" data-percent="23.4"><span
+                                    class="percent">23.4%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>人工智能课程</h4>
+                            <div class="easypiechart" id="easypiechart-red" data-percent="31.1"><span
+                                    class="percent">31.1%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>考研课程</h4>
+                            <div class="easypiechart" id="easypiechart-blue" data-percent="19.7"><span
+                                    class="percent">19.7%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>GRE课程</h4>
+                            <div class="easypiechart" id="easypiechart-orange" data-percent="13.4"><span
+                                    class="percent">13.4%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>托福课程</h4>
+                            <div class="easypiechart" id="easypiechart-yellow" data-percent="18.7"><span
+                                    class="percent">18.7%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>四六级课程</h4>
+                            <div class="easypiechart" id="easypiechart-lightcoral" data-percent="5.6"><span
+                                    class="percent">5.6%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-header">
+                        同类课程比较
+                    </h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div id="sameclass" style="width: 1100px;height:400px; float: left; margin-left: 15px"></div>
+            </div>
+
+            <script type="text/javascript">
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('sameclass'), 'light');
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: "市场同类课程价格对比"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: ['计算机基础课程', '人工智能课程', '考研课程', '托福课程', 'GRE课程', '四六级课程']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLabel: {
+                            formatter: '{value}'
+                        }
+                    },
+                    backgroundColor: '#ffffff',
+                    legend: {
+                        data: ['市场价格', '我的价格']
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            magicType: {show: true, type: ['line', 'bar']},
+                        }
+                    },
+                    series: [
+                        {
+                            name: '市场价格',
+                            type: 'line',
+                            data: [3500, 3840, 2625, 2900, 3100, 1350],
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: '最大值'},
+                                    {type: 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine: {
+                                data: [
+                                    {type: 'average', name: '平均值'}
+                                ]
+                            }
+                        },
+                        {
+                            name: '我的价格',
+                            type: 'line',
+                            data: [3100, 3620, 2200, 3100, 3500, 1860],
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: '最大值'},
+                                    {type: 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine: {
+                                data: [
+                                    {type: 'average', name: '平均值'}
+
+                                ]
+                            }
+                        }
+                    ]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+
+            </script>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-header">
+                        课程价格分析
+                    </h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div id="price" style="width: 1100px;height:400px; float: left; margin-left: 15px"></div>
+            </div>
+
+            <script type="text/javascript">
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('price'), 'light');
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: "选购率随价格变化"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['销售额']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['0-2000', '2000-3000', '3000-4000', '4000-']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "选购率",
+                        data: [96.5, 84.8, 76.1, 56.8],
+                        type: 'line'
+                    }]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            </script>
+
+
+            <!-- /. ROW  -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">
+                    </h2>
+                    <h3 class="page-header">
+                        学生分析
+                    </h3>
+                    <h4 class="page-header">
+                        学生数量地域分析
+                    </h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div style="width: 550px;height:400px; float: left; ">
+                    <ul class="nav nav-tabs" style="margin-left: 15px">
+                        <li class="active"><a id="sq" data-toggle="tab">按季度</a>
+                        </li>
+                        <li class=""><a id="sm" data-toggle="tab">按月</a>
+                        </li>
+                    </ul>
+                    <div id="stdnum" style="width: 550px;height:358px; float: left; margin-left: 15px"></div>
+                    <div id="stdnum_mon"
+                         style="width: 550px;height:358px; float: left; margin-left: 15px;"></div>
+                </div>
+                <div id="map" style="width: 500px; height: 400px; float: right; margin-right: 15px"></div>
+            </div>
+
+            <script type="text/javascript">
+                $("#stdnum_mon").hide();
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('stdnum'), 'light');
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: "各季度学生数量变化"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['学生数量']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['16Q3', '16Q4', '17Q1', '17Q2', '17Q3', '17Q4', '18Q1', '18Q2']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "学生数量",
+                        data: [56, 279, 345, 497, 487, 510, 538, 516],
+                        type: 'line'
+                    }]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+
+                myChart = echarts.init(document.getElementById('stdnum_mon'), 'light');
+
+                option = {
+                    title: {
+                        text: "各月学生数量变化"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['学生数量']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['16.9', '16.10', '16.11', '16.12', '17.1', '17.2', '17.3', '17.4', '17.5', '17.6', '17.7', '17.8', '17.9', '17.10', '17.11', '17.12', '18.1', '18.2', '18.3', '18.4', '18.5', '18.6']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "学生数量",
+                        data: [56, 78, 97, 104, 87, 103, 155, 167, 152, 178, 183, 165, 139, 173, 164, 173, 170, 199, 169, 161, 167, 188],
+                        type: 'line'
+                    }]
+                };
+                myChart.setOption(option);
+
+                $("#sq").click(function () {
+                    $('#stdnum').show();
+                    $('#stdnum_mon').hide();
+                })
+                $('#sm').click(function () {
+                    $('#stdnum').hide();
+                    $('#stdnum_mon').show();
+                })
+            </script>
+            <script type="text/javascript">
+                // 基于准备好的dom，初始化echarts实例
+                var map = echarts.init(document.getElementById('map'));
+
+                // 指定图表的配置项和数据
+                var option3 = {
+                    backgroundColor: '#FFFFFF',
+                    title: {
+                        text: '学员地域分布',
+                        x: 'left'
+                    },
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    visualMap: {
+                        min: 1,
+                        max: 500,
+                        text: ['High', 'Low'],
+                        realtime: false,
+                        calculable: true,
+                        inRange: {
+                            color: ['lightgray', 'yellow', 'red']
+                        }
+                    },
+                    series: [{
+                        name: '订单数',
+                        type: 'map',
+                        mapType: 'china',
+                        roam: true,
+                        label: {
+                            normal: {
+                                show: false
+                            },
+                            emphasis: {
+                                show: false
+                            }
+                        },
+                        data: [
+                            {name: '北京', value: 467},
+                            {name: '天津', value: 22},
+                            {name: '上海', value: 352},
+                            {name: '重庆', value: 43},
+                            {name: '河北', value: 0},
+                            {name: '河南', value: 0},
+                            {name: '云南', value: 43},
+                            {name: '辽宁', value: 86},
+                            {name: '黑龙江', value: 141},
+                            {name: '湖南', value: 0},
+                            {name: '安徽', value: 1},
+                            {name: '山东', value: 269},
+                            {name: '新疆', value: 12},
+                            {name: '江苏', value: 582},
+                            {name: '浙江', value: 502},
+                            {name: '江西', value: 0},
+                            {name: '湖北', value: 0},
+                            {name: '广西', value: 0},
+                            {name: '甘肃', value: 0},
+                            {name: '山西', value: 67},
+                            {name: '内蒙古', value: 0},
+                            {name: '陕西', value: 0},
+                            {name: '吉林', value: 102},
+                            {name: '福建', value: 0},
+                            {name: '贵州', value: 45},
+                            {name: '广东', value: 2},
+                            {name: '青海', value: 0},
+                            {name: '西藏', value: 0},
+                            {name: '四川', value: 321},
+                            {name: '宁夏', value: 32},
+                            {name: '海南', value: 70},
+                            {name: '台湾', value: 0},
+                            {name: '香港', value: 0},
+                            {name: '澳门', value: 0}
+                        ]
+                    }]
+                };
+                map.setOption(option3);
+            </script>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">
+                    </h2>
+                    <h4 class="page-header">
+                        学生成绩分析
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <ul class="nav nav-tabs" style="margin-left: 15px">
+                    <li class="active"><a id="gall" data-toggle="tab">总体分布</a>
+                    </li>
+                    <li class=""><a id="gjsj" data-toggle="tab">计算机课程</a>
+                    </li>
+                    <li class=""><a id="grgzn" data-toggle="tab">人工智能</a>
+                    </li>
+                    <li class=""><a id="gky" data-toggle="tab">考研</a>
+                    </li>
+                    <li class=""><a id="gtf" data-toggle="tab">托福</a>
+                    </li>
+                    <li class=""><a id="ggre" data-toggle="tab">GRE</a>
+                    </li>
+                    <li class=""><a id="gslj" data-toggle="tab">四六级</a>
+                    </li>
+                </ul>
+                <div id="all" style="width: 1100px;height:400px; float: left; margin-left: 15px"></div>
+                <div id="jsj" style="width: 1100px;height:400px; float: left; margin-left: 15px;"></div>
+                <div id="rgzn" style="width: 1100px;height:400px; float: left; margin-left: 15px;"></div>
+                <div id="ky" style="width: 1100px;height:400px; float: left; margin-left: 15px;"></div>
+                <div id="tf" style="width: 1100px;height:400px; float: left; margin-left: 15px;"></div>
+                <div id="gre" style="width: 1100px;height:400px; float: left; margin-left: 15px;"></div>
+                <div id="slj" style="width: 1100px;height:400px; float: left; margin-left: 15px;"></div>
+            </div>
+
+            <script type="text/javascript">
+                $("#jsj").hide();
+                $("#rgzn").hide();
+                $("#ky").hide();
+                $("#tf").hide();
+                $("#gre").hide();
+                $("#slj").hide();
+                var myChart = echarts.init(document.getElementById('all'), 'light');
+                var option = {
+                    title: {
+                        text: "学生总体成绩分布"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['人数比例']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['0-59', '60-74', '75-84', '85-100']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "人数比例",
+                        data: [5.4, 23.6, 45.5, 25.5],
+                        type: 'bar'
+                    }]
+                };
+                myChart.setOption(option);
+
+                var myChart = echarts.init(document.getElementById('jsj'), 'light');
+                var option = {
+                    title: {
+                        text: "学生计算机课程成绩分布"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['人数比例']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['0-59', '60-74', '75-84', '85-100']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "人数比例",
+                        data: [3.1, 17.6, 35.8, 43.5],
+                        type: 'bar'
+                    }]
+                };
+                myChart.setOption(option);
+
+                var myChart = echarts.init(document.getElementById('rgzn'), 'light');
+                var option = {
+                    title: {
+                        text: "学生人工智能课程成绩分布"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['人数比例']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['0-59', '60-74', '75-84', '85-100']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "人数比例",
+                        data: [1.1, 20.3, 39.1, 39.5],
+                        type: 'bar'
+                    }]
+                };
+                myChart.setOption(option);
+
+                var myChart = echarts.init(document.getElementById('ky'), 'light');
+                var option = {
+                    title: {
+                        text: "学生考研课程成绩分布"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['人数比例']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['0-59', '60-74', '75-84', '85-100']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "人数比例",
+                        data: [5.8, 21.3, 40.6, 32.3],
+                        type: 'bar'
+                    }]
+                };
+                myChart.setOption(option);
+
+                var myChart = echarts.init(document.getElementById('tf'), 'light');
+                var option = {
+                    title: {
+                        text: "学生托福课程成绩分布"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['人数比例']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['0-59', '60-74', '75-84', '85-100']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "人数比例",
+                        data: [10.9, 19.8, 38.9, 30.4],
+                        type: 'bar'
+                    }]
+                };
+                myChart.setOption(option);
+
+                var myChart = echarts.init(document.getElementById('gre'), 'light');
+                var option = {
+                    title: {
+                        text: "学生GRE课程成绩分布"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['人数比例']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['0-59', '60-74', '75-84', '85-100']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "人数比例",
+                        data: [9.8, 27.6, 45.1, 17.5],
+                        type: 'bar'
+                    }]
+                };
+                myChart.setOption(option);
+
+                var myChart = echarts.init(document.getElementById('slj'), 'light');
+                var option = {
+                    title: {
+                        text: "学生四六级课程成绩分布"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['人数比例']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['0-59', '60-74', '75-84', '85-100']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: "#ffffff",
+                    series: [{
+                        name: "人数比例",
+                        data: [2.3, 10.9, 37.4, 49.4],
+                        type: 'bar'
+                    }]
+                };
+                myChart.setOption(option);
+
+
+                $("#gall").click(function () {
+                    $("#all").show();
+                    $("#jsj").hide();
+                    $("#rgzn").hide();
+                    $("#ky").hide();
+                    $("#tf").hide();
+                    $("#gre").hide();
+                    $("#slj").hide();
+                })
+                $("#gjsj").click(function () {
+                    $("#all").hide();
+                    $("#jsj").show();
+                    $("#rgzn").hide();
+                    $("#ky").hide();
+                    $("#tf").hide();
+                    $("#gre").hide();
+                    $("#slj").hide();
+                })
+                $("#grgzn").click(function () {
+                    $("#all").hide();
+                    $("#jsj").hide();
+                    $("#rgzn").show();
+                    $("#ky").hide();
+                    $("#tf").hide();
+                    $("#gre").hide();
+                    $("#slj").hide();
+                })
+                $("#gky").click(function () {
+                    $("#all").hide();
+                    $("#jsj").hide();
+                    $("#rgzn").hide();
+                    $("#ky").show();
+                    $("#tf").hide();
+                    $("#gre").hide();
+                    $("#slj").hide();
+                })
+                $("#gtf").click(function () {
+                    $("#all").hide();
+                    $("#jsj").hide();
+                    $("#rgzn").hide();
+                    $("#ky").hide();
+                    $("#tf").show();
+                    $("#gre").hide();
+                    $("#slj").hide();
+                })
+                $("#ggre").click(function () {
+                    $("#all").hide();
+                    $("#jsj").hide();
+                    $("#rgzn").hide();
+                    $("#ky").hide();
+                    $("#tf").hide();
+                    $("#gre").show();
+                    $("#slj").hide();
+                })
+                $("#gslj").click(function () {
+                    $("#all").hide();
+                    $("#jsj").hide();
+                    $("#rgzn").hide();
+                    $("#ky").hide();
+                    $("#tf").hide();
+                    $("#gre").hide();
+                    $("#slj").show();
+                })
+            </script>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-header">
+                    </h2>
+                    <h3 class="page-header">
+                        退课课程分析
+                    </h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5 col-sm-12 col-xs-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            退课最多
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>编号</th>
+                                        <th>课程名</th>
+                                        <th>老师名</th>
+                                        <th>退课数</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>软件高质量测试</td>
+                                        <td>曹真原</td>
+                                        <td>8</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>人工智能体系结构设计</td>
+                                        <td>张浩</td>
+                                        <td>6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>软件需求分析</td>
+                                        <td>匡吼雨</td>
+                                        <td>5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>15天解决GRE单词</td>
+                                        <td>王觉岁</td>
+                                        <td>5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Python入门</td>
+                                        <td>GoodFellow</td>
+                                        <td>3</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-7" id="dropcol" style="height: 314px"></div>
+            </div>
+
+            <script type="text/javascript">
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('dropcol'), 'light');
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: "退课原因统计"
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['课程质量差', '时间冲突', '不喜欢课程', '不喜欢老师', '不喜欢机构', '其他']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    backgroundColor: '#ffffff',
+                    series: [
+                        {
+                            name: '2017',
+                            type: 'bar',
+                            data: [33, 37, 25, 17, 13, 48],
+                        }
+                    ]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+
+            </script>
+
+
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+
+<!-- Bootstrap Js -->
+<script src="../assets/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Js -->
+<script src="../assets/js/jquery.metisMenu.js"></script>
+<!-- Morris Chart Js -->
+<script src="../assets/js/morris/raphael-2.1.0.min.js"></script>
+<script src="../assets/js/morris/morris.js"></script>
+
+
+<script src="../assets/js/easypiechart.js"></script>
+<script src="../assets/js/easypiechart-data.js"></script>
+
+<script src="../assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+<!-- Custom Js -->
+<script src="../assets/js/custom-scripts.js"></script>
+
+
+</body>
+
+</html>
